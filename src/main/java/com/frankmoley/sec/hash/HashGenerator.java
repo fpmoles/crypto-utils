@@ -13,7 +13,6 @@ import java.util.logging.Logger;
  */
 public class HashGenerator {
 
-    private static final Logger LOGGER = Logger.getLogger(HashGenerator.class.getName());
 
     public static String createHash(String input, String salt){
         try {
@@ -21,7 +20,6 @@ public class HashGenerator {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             byte[] hash = messageDigest.digest(valueToHash.getBytes());
             String result = DatatypeConverter.printHexBinary(hash);
-            LOGGER.info("Hash is: " + result);
             return result;
         }catch(NoSuchAlgorithmException nsae){
             throw new CryptoUtilsSystemException("Algorithm not available.");
@@ -30,7 +28,6 @@ public class HashGenerator {
 
     public static String createPasswordHash(String password){
         String result = BCrypt.hashpw(password, BCrypt.gensalt(11));
-        LOGGER.info("BCrypt Hash is: " + result);
         return result;
     }
 

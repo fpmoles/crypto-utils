@@ -22,4 +22,10 @@ public class RandomNumberGenerator {
         return secureRandom.nextLong();
     }
 
+    public static byte[] generateRandomByteArray(int numberOfBytes){
+        byte[] bytes = new byte[numberOfBytes];
+        secureRandom.nextBytes(bytes);
+        return bytes;
+    }
+
 }
